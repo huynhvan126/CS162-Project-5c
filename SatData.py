@@ -23,8 +23,8 @@ class SatData:
         """
         Save SAT data to CSV file named 'output.csv'.
         """
-        headers = ["DBN", "School_Name", "Number_of_Test_Takers",
-                   "Critical_Reading_Mean", "Mathematics_Mean", "Writing_Mean"]
+        headers = ["DBN", "school_name", "number_tested",
+                   "critical_reading_mean", "mathematics_mean", "writing_mean"]
         dbns.sort()
         csv_data = ",".join(headers) + "\n"
         for row in self._data:
