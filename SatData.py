@@ -4,6 +4,9 @@
 # Description: Write a class named Satdata that read JSON file and a data to a text file in CSv format.
 import json
 
+def str(value):
+    pass
+    
 class SatData:
     """
     A class to handle SAT data, reading SAT data for NYC from JSON file and saving specific school data to a CSV file.
