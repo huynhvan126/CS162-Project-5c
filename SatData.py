@@ -23,18 +23,15 @@ class SatData:
         """
         Save SAT data to CSV file named 'output.csv'.
         """
-        headers = ["DBN", "School Name", "Number of Test Takers",
-                   "Critical Reading Mean", "Mathematics Mean", "Writing Mean"]
+        headers = ["DBN", "School_Name", "Number_of_Test_Takers",
+                   "Critical_Reading_Mean", "Mathematics_Mean", "Writing_Mean"]
         dbns.sort()
         csv_data = ",".join(headers) + "\n"
-        for school in self._data:
-            if school["DBN"] in dbns:
-                school_name = f'"{school["School Name"]}"' if "," in school["School Name"] else school["School Name"]
-                row_data = [school["DBN"],
-                            school_name,
-                            str(school["Number of Test Takers"]),
-                            str(school["Critical Reading Mean"]),
-                            str(school["Mathematics Mean"]),]
+        for row in self._data:
+            dbn = row[2]
+            if dbn in dbns:
+                school_name = f'"{row[3]}"' if "," in row[3] else row[3]
+                row_data = [dbn, school_name, str(row[4]), str(row[5]), str(row[6]), str(row[7])]
                 csv_data += ",".join(row_data) + "\n"
 
         with open("output.csv", "w") as file:
