@@ -22,10 +22,13 @@ class SatData:
         headers = ["DBN", "School Name", "Number of Test Takers",
                    "Critical Reading Mean", "Mathematics Mean", "Writing Mean"]
         rows = []
+
         for entry in self._data:
             if entry['DBN'] in dbns:
+                school_name = f'"{entry["School Name"]}"' if ',' in entry["School Name"] else entry["School Name"]
+
                 row = [entry['DBN'],
-                       f'"{entry["School Name"]}"' if ',' in entry["School Name"] else entry["School Name"],
+                       school_name,
                        entry['Number of Test Takers'],
                        entry['Critical Reading Mean'],
                        entry['Mathematics Mean'],
