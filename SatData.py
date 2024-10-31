@@ -33,7 +33,7 @@ class SatData:
                 school_data = next((school for school in self._data if school["DBN"] == dbn), None)
                 if school_data:
                     row = [
-                        school_data.get["DBN", ""],
+                        school_data.get("DBN", ""),
                         f'"{school_data.get("School Name", "")}"' if "," in school_data.get("School Name", "") else school_data.get("School Name", ""),
                         school_data.get("Number of Test Takers", ""),
                         school_data.get("Critical Reading Mean", ""),
