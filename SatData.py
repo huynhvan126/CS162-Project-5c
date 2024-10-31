@@ -13,26 +13,16 @@ class SatData:
         Initialize SATData class by loading SAT data from 'sat.json'.
         """
         with open("sat.json", "r") as file:
-            try:
                 self._data = json.load(file)
-            except json.JSONDecodeError as e:
-                print(f"Error parsing JSON file: {e}")
-                exit(1)
 
-    def save_as_csv(self, dbns):
+    def save_as_csv(self, dbns, output_filename="output.csv"):
         """
         Save SAT data to CSV file named 'output.csv'.
         """
-        headers = ["DBN", "School Name", "Number of Test Takers",
-                   "Critical Reading Mean", "Mathematics Mean", "Writing Mean"]
         dbns.sort()
-        csv_data = ",".join(headers) + "\n"
-        for row in self._data:
-            dbn = row[2]
-            if dbn in dbns:
-                school_name = f'"{row[3]}"' if "," in row[3] else row[3]
-                row_data = [dbn, school_name, str(row[4]), str(row[5]), str(row[6]), str(row[7])]
-                csv_data += ",".join(row_data) + "\n"
-
-        with open("output.csv", "w") as file:
-            file.write(csv_data)
+        with open(output_filename, "w", newline='') as csv_file:
+            csv_file.write("DBN, School Name, Number of Test Takers, Critical Reading Mean, Mathematics Mean, Writing Mean\n")
+            for row in self._data['school_data']:
+                if row['DBN'] in dbns:
+                    school_name = row['school_name'].replace(",", r'\"')
+                    csv_file.write(f"{row['DBN']}, {school_name}, {row['num_tested']}, {row['critical_reading_mean']}, {row['mathematics_mean']}, {row['writing_mean']}\n")
