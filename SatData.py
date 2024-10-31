@@ -25,7 +25,7 @@ class SatData:
         for entry in self._data:
             if entry['DBN'] in dbns:
                 row = [entry['DBN'],
-                       f'"{entry['School Name']}"' if ',' in entry["School Name"] else entry["School Name"],
+                       f'"{entry["School Name"]}"' if ',' in entry["School Name"] else entry["School Name"],
                        entry['Number of Test Takers'],
                        entry['Critical Reading Mean'],
                        entry['Mathematics Mean'],
