@@ -28,13 +28,13 @@ class SatData:
         for item in self._data['data']:
             if item[8] in dbn_list:
                 csv_list.append(item[8:14])
-        sorted(csv_list)
+
+        csv_list.sort(key=lambda x: x[0])
+
         with open('output.csv', 'w') as new_file:
-            new_file.write(','.join(headers))
-            new_file.write('\n')
-            pos = 0
-            while pos < len(csv_list):
-                new_file.write(csv_list[pos])
-                new_file.write('\n')
-                pos += 1
-            return csv_list
+            new_file.write(','.join(headers) +'\n')
+            for row in csv_list:
+                row_string = ','.join(str(value) if value != "" else "" for value in row)
+                new_file.write(row_string + '\n')
+                
+        return csv_list
