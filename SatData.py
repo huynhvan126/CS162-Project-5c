@@ -15,7 +15,7 @@ class SatData:
         try:
             with open('sat.json', 'r') as json_file:
                 self._data = json.load(json_file)
-            except FileNotFoundError:
+            except(FileNotFoundError):
                 print('file not found')
 
     def save_as_csv(self, dbn_list):
